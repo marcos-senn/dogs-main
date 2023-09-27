@@ -6,7 +6,7 @@ const { DataTypes } = require("sequelize");
 //modelo dog(razas)
 module.exports = (sequelize) => {
  sequelize.define(
-  "Dog",
+  'Dog',
   {
    id: {
     type: DataTypes.UUID,
