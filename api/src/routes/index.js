@@ -6,7 +6,7 @@ const { getDogsTemperaments } = require("../controllers/getTemperaments");
 const { getDogsByname } = require("../controllers/getDogsByname");
 const {postDog} = require("../controllers/postDog")
 
-// ------ Configuracion rutas ------
+// ------ Configuracion rutas con sus handlers------
 
 //Configuracion ruta /dogs para que express no tome la primera ruta que coincida
 router.get("/dogs", (req, res) => {
@@ -16,8 +16,8 @@ router.get("/dogs", (req, res) => {
 });
 router.get("/dogs", getDogsByname);
 router.get("/dogs/:id", getDogById);
+router.get("/temperaments", getDogsTemperaments);
 router.post("/dogs", postDog)
 
-router.get("/temperaments", getDogsTemperaments);
 
 module.exports = router;
