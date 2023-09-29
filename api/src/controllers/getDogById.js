@@ -13,7 +13,7 @@ const getDogById = async (req, res) => {
 
   //Si name existe en la respuesta de la API quiere decir que el id esta ahi, entonces creo objeto con los datos de la API
   if (name) {
-   const { id, name, height, weight, life_span, image, temperament } =
+   const { id, name, height, weight, life_span, reference_image_id, temperament } =
     apiResponse.data;
    const dog = {
     id,
@@ -21,7 +21,7 @@ const getDogById = async (req, res) => {
     height,
     weight,
     life_span,
-    image,
+    image : `https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`,
     temperament,
    };
    //Retorno el objeto creado
