@@ -1,7 +1,9 @@
-import { GET_DOGS } from "./actionTypes";
+import { GET_DOGS, GET_DOGS_BY_ID } from "./actionTypes";
 import axios from "axios";
 
-const getDogs = () => {
+
+
+export const getDogs = () => {
     return async (dispatch) => {
         const endPoint = "http://localhost:3001/dogs";
         const { data } = await axios.get(endPoint);
@@ -12,4 +14,24 @@ const getDogs = () => {
     };
 }
 
-export default getDogs;
+export const getDogsByname = (name) => {
+    return async (dispatch) => {
+        const endPoint = `http://localhost:3001/dogs?name=${name}`;
+        const { data } = await axios.get(endPoint);
+        return dispatch({
+            type: GET_DOGS,
+            payload: data,
+        });
+    }
+};
+
+export const getDogById = (id) => {
+    return async (dispatch) => {
+        const endPoint = `http://localhost:3001/dogs/${id}`;
+        const { data } = await axios.get(endPoint);
+        return dispatch({
+            type: GET_DOGS_BY_ID,
+            payload: data,
+        });
+    }
+}

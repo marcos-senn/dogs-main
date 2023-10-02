@@ -14,7 +14,6 @@ router.get("/dogs", (req, res) => {
   getDogsByname(req, res);
  } else getDogs(req, res);
 });
-router.get("/dogs", getDogsByname);
 router.get("/dogs/:id", getDogById);
 router.get("/temperaments", getDogsTemperaments);
 router.post("/dogs", postDog)
