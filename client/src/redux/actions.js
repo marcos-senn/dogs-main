@@ -35,3 +35,12 @@ export const getDogById = (id) => {
         });
     }
 }
+
+export const cleanDetail = () => {
+    return async (dispatch) => {
+        return dispatch({
+            type: "CLEAN_DETAIL",
+            payload: [],
+        });
+    }
+}

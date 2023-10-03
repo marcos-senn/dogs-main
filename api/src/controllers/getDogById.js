@@ -18,8 +18,8 @@ const getDogById = async (req, res) => {
    const dog = {
     id,
     name,
-    height,
-    weight,
+    height:height.metric,
+    weight: weight.metric,
     life_span,
     image : `https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`,
     temperament,

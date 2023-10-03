@@ -52,6 +52,7 @@ const Cards = () => {
                             return (
                                 <Card
                                     key={dog.id}
+                                    id={dog.id}
                                     name={dog.name}
                                     temperament={dog.temperament}
                                     weight={dog.weight}
