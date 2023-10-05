@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_DOGS_BY_ID } from "./actionTypes";
+import { GET_DOGS, GET_DOGS_BY_ID,GET_TEMPERAMENTS,CLEAN_DETAIL} from "./actionTypes";
 import axios from "axios";
 
 
@@ -39,8 +39,19 @@ export const getDogById = (id) => {
 export const cleanDetail = () => {
     return async (dispatch) => {
         return dispatch({
-            type: "CLEAN_DETAIL",
+            type: CLEAN_DETAIL,
             payload: [],
+        });
+    }
+}
+
+export const getTemperaments = () => {
+    return async (dispatch) => {
+        const endPoint = "http://localhost:3001/temperaments";
+        const { data } = await axios.get(endPoint);
+        return dispatch({
+            type: GET_TEMPERAMENTS,
+            payload: data,
         });
     }
 }

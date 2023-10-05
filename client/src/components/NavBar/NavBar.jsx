@@ -9,7 +9,10 @@ const NavBar = () => {
 				<button>
 				<NavLink to="/home">Home</NavLink>
 				</button>
-				<button>Nueva Raza</button>
+
+				<button>
+				<NavLink to="/form">Agregar raza</NavLink>
+				</button>
 			</div>
 		</div>
 	);

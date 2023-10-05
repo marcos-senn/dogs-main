@@ -1,8 +1,9 @@
-import { GET_DOGS, GET_DOGS_BY_ID, CLEAN_DETAIL } from "./actionTypes";
+import { GET_DOGS, GET_DOGS_BY_ID, CLEAN_DETAIL,GET_TEMPERAMENTS } from "./actionTypes";
 
 const initialState = {
 	dogs: [],
 	dogDetail:[],
+	temperaments: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -24,6 +25,12 @@ const reducer = (state = initialState, { type, payload }) => {
 				...state,
 				dogDetail:payload,
 			}
+
+		case GET_TEMPERAMENTS:
+			return {
+				...state,
+				temperaments: payload,
+			};
 		default:
 			return state;
 	}
