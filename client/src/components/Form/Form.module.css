@@ -25,7 +25,7 @@
     outline: none;
   }
   
-  input[type="submit"] {
+.submitBtn{
     background-color: #007bff;
     color: white;
     padding: 10px 15px;
@@ -33,9 +33,13 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
-  input[type="submit"]:hover {
+.submitBtn:hover {
     background-color: #0056b3;
+  }
+
+  .submitBtn[disabled] {
+    background-color: gray;
+    cursor: not-allowed;
   }
 
 .container{

@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_DOGS_BY_ID,GET_TEMPERAMENTS,CLEAN_DETAIL} from "./actionTypes";
+import { GET_DOGS, GET_DOGS_BY_ID,GET_TEMPERAMENTS,CLEAN_DETAIL,POST_DOG} from "./actionTypes";
 import axios from "axios";
 
 
@@ -53,5 +53,12 @@ export const getTemperaments = () => {
             type: GET_TEMPERAMENTS,
             payload: data,
         });
+    }
+}
+
+export const addDog = (state) => {
+    return async () => {
+        const endPoint = "http://localhost:3001/dogs";
+        const data  = await axios.post(endPoint, state);
     }
 }

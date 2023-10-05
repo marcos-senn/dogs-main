@@ -3,9 +3,11 @@ import Styles from "./Form.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments } from "../../redux/actions";
+import { addDog } from "../../redux/actions";
+import validation from "./validations";
 
 function Form() {
-	const temperaments = useSelector(state => state.temperaments);
+	const temperaments = useSelector(state => state.temperaments); //traigo los temperamentos del estado global para mapear en options
 
 	const dispatch = useDispatch();
 
@@ -13,6 +15,8 @@ function Form() {
 		dispatch(getTemperaments());
 	}, [dispatch]);
 
+	
+	//Estado local con valor de inputs
 	const [state, setState] = useState({
 		name: "",
 		minHeight: 0,
@@ -24,12 +28,52 @@ function Form() {
 		imageUrl: "",
 	});
 
+
+	//-------------Manejo de errores-------------------
+	const [errors, setErrors] = useState({
+		name: "",
+		minHeight: "",
+		maxHeight: "",
+		minWeight: "",
+		maxWeight: "",
+		life_span: "",
+		temperaments: "",
+		imageUrl: "",
+	});
+
+	const [submitDisabled, setSubmitDisabled] = useState(true);
+
+	const disabledHandler = () => {
+		const completeFields =
+		state.name &&
+		state.minHeight &&
+		state.maxHeight &&
+		state.minWeight &&
+		state.maxWeight &&
+		state.life_span &&
+		state.temperaments.length > 0 &&
+		state.imageUrl;
+	
+	  setSubmitDisabled(!completeFields);
+		
+	}
+
+
+	//-------------------- Manejo de inputs ------------------------------------
 	const handleChange = event => {
 		setState({
 			...state,
 			[event.target.name]: event.target.value,
 		});
-		console.log(state);
+
+		setErrors(
+			validation({ //gestiono errores en tiempo real
+				...state,
+				[event.target.name]: event.target.value,
+			}, event.target.name)
+		);
+		disabledHandler();
+		//console.log(state);
 	};
 
 	//--------------- Manejo de temperamentos seleccionados ---------------------
@@ -49,10 +93,34 @@ function Form() {
 		setSelectedTemperament(""); //seteo el estado de la opcion seleccionada en vacio
 	};
 
-	const handleSubmit =  (event) => {
-		event.preventDefault();	
-		dispatch(addDog(state));
+	//----------------- Dispatch de la accion de agregar perro ------------------
+
+	let newDog = {
+		//creo el objeto con los datos del perro para enviar al servidor
+		name: state.name,
+		height: `${state.minHeight} - ${state.maxHeight}`,
+		weight: `${state.minWeight} - ${state.maxWeight}`,
+		life_span: state.life_span,
+		temperament: state.temperaments,
+		image: state.imageUrl,
+	};
+
+	const handleSubmit = event => {
+		//envio objeto al servidor
+		//console.log(newDog)
+		event.preventDefault();
+		dispatch(addDog(newDog));
 		alert("Raza agregada con exito");
+		setState({
+			name: "",
+			minHeight: 0,
+			maxHeight: 0,
+			minWeight: 0,
+			maxWeight: 0,
+			life_span: 0,
+			temperaments: [],
+			imageUrl: "",
+		});
 	};
 
 	return (
@@ -66,7 +134,9 @@ function Form() {
 						onChange={handleChange}
 						value={state.name}
 						placeholder="Ingrese el nombre"
+						required
 					/>
+					{errors.name && <p>{errors.name}</p>}
 				</label>
 
 				<div className={Styles.inlineInputs}>
@@ -74,10 +144,11 @@ function Form() {
 						Altura minima:
 						<input
 							type="text"
-							name="min-height"
+							name="minHeight"
 							onChange={handleChange}
 							placeholder="Ingrese la altura minima"
 						/>
+						{errors.minHeight && <p>{errors.minHeight}</p>}
 					</label>
 					<label>
 						Altura maxima:
@@ -85,8 +156,10 @@ function Form() {
 							onChange={handleChange}
 							placeholder="Ingrese la altura maxima"
 							type="text"
-							name="max-height"
+							name="maxHeight"
+							
 						/>
+						{errors.maxHeight && <p>{errors.maxHeight}</p>}
 					</label>
 				</div>
 				<div className={Styles.inlineInputs}>
@@ -96,8 +169,10 @@ function Form() {
 							onChange={handleChange}
 							placeholder="Ingrese el peso minimo"
 							type="text"
-							name="min-weight"
+							name="minWeight"
+							
 						/>
+						{errors.minWeight && <p>{errors.minWeight}</p>}
 					</label>
 					<label>
 						Peso Maximo:
@@ -105,8 +180,10 @@ function Form() {
 							onChange={handleChange}
 							placeholder="Ingrese el peso maximo"
 							type="text"
-							name="max-weight"
+							name="maxWeight"
+							
 						/>
+						{errors.maxWeight && <p>{errors.maxWeight}</p>}
 					</label>
 				</div>
 				<label>
@@ -116,7 +193,9 @@ function Form() {
 						placeholder="Ingrese los años de vida"
 						type="text"
 						name="life_span"
+						
 					/>
+					{errors.life_span && <p>{errors.life_span}</p>}
 				</label>
 
 				<label>
@@ -126,8 +205,9 @@ function Form() {
 						size="3"
 						multiple
 						onChange={temperamentHandler}
+						
 					>
-						{temperaments.map(temperament => {
+						{temperaments?.map(temperament => {
 							return (
 								<option key={temperament.id} value={temperament.name}>
 									{temperament.name}
@@ -138,6 +218,7 @@ function Form() {
 					<button onClick={temperamentSubmitHandler}>
 						Agregar Temperamento
 					</button>
+					{errors.temperaments && <p>{errors.temperaments}</p>}
 				</label>
 				<label>
 					Imagen url:
@@ -145,10 +226,14 @@ function Form() {
 						onChange={handleChange}
 						placeholder="Ingrese url de imagen"
 						type="text"
-						name="image"
+						name="imageUrl"
+						
 					/>
+					{errors.imageUrl && <p>{errors.imageUrl}</p>}
 				</label>
-				<input type="submit" value="Agregar" onClick={handleSubmit}/>
+
+				<button className={Styles.submitBtn} value="Agregar" onClick={handleSubmit} type="submit" disabled={submitDisabled}>Agregar</button>
+				{submitDisabled? <p className={Styles.submitDisabled}>Complete todos los campos para habilitar</p> : null}
 			</form>
 		</div>
 	);

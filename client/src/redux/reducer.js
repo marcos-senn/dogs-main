@@ -31,6 +31,7 @@ const reducer = (state = initialState, { type, payload }) => {
 				...state,
 				temperaments: payload,
 			};
+
 		default:
 			return state;
 	}

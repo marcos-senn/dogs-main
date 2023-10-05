@@ -5,6 +5,7 @@ const api_key = process.env.API_KEY;
 const URL = "https://api.thedogapi.com/v1/breeds";
 const { Dog } = require("../db.js");
 
+
 //obtener dogbyNAME de la API
 const getDogsByname = async (req, res) => {
     try {

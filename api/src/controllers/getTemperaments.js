@@ -18,17 +18,27 @@ const getDogsTemperaments = async (req, res) => {
                 .join(",") //uno todos los temperamentos en un solo string separados por ,
                 .split(",") //convierto el string en un array 
                 .filter((temperament) => temperament.trim().length > 0)
-                .sort());
+                .sort())
+
+                //console.log("API:", temperaments)
 
                 //añadir temperamentos a bd
 
-
-        const newTemperament = Array.from(temperaments).map((temperament) =>
-            Temperament.findOrCreate({ where: { name: temperament } })
+            //ver si es necesario el el await promis all
+        const newTemperamentPromise = Array.from(temperaments).map((temperament) =>
+            Temperament.findOrCreate({ where: { name: temperament.trim() } })
         );
+
+        //console.log(" BD:", newTemperamentPromise);
+
+        const newTemperament = await Promise.all(newTemperamentPromise);
+
+        console.log("Temperamentos agregados a la BD:", newTemperament);
 
         //traigo temperamentos de bd
         const temperamentsDB = await Temperament.findAll();
+
+        console.log("Temperamentos de la BD:", temperamentsDB);
 
         return res.status(200).json(temperamentsDB);
     } catch (error) {
