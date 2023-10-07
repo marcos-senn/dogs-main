@@ -1,4 +1,4 @@
-import {RESET_FILTER, GET_DOGS, GET_DOGS_BY_ID,GET_TEMPERAMENTS,CLEAN_DETAIL,ORDER_BY_NAME,ORDER_BY_TEMPERAMENT} from "./actionTypes";
+import {FILTER_BY_CREATED,RESET_FILTER, GET_DOGS, GET_DOGS_BY_ID,GET_TEMPERAMENTS,CLEAN_DETAIL,ORDER_BY_NAME,ORDER_BY_TEMPERAMENT,ORDER_BY_WEIGHT} from "./actionTypes";
 import axios from "axios";
 
 
@@ -83,5 +83,19 @@ export const resetFilter = (state) => {
     return {
         type: RESET_FILTER,
         payload: state,
+    }
+}
+
+export const orderByWeight = (weigth) => {
+    return {
+        type: ORDER_BY_WEIGHT,
+        payload: weigth,
+    }
+}
+
+export const filterByCreated = () => {
+    return{
+        type: FILTER_BY_CREATED,
+        payload: "created",
     }
 }

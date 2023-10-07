@@ -7,14 +7,14 @@ import {
 	orderByTemperament,
 	getTemperaments,
 	resetFilter,
+	orderByWeight,
+	filterByCreated,
 } from "../../redux/actions";
 
 const Filter = () => {
 	const dispatch = useDispatch();
 
 	const temperaments = useSelector(state => state.temperaments);
-	
-	
 
 	useEffect(() => {
 		dispatch(getTemperaments());
@@ -33,11 +33,24 @@ const Filter = () => {
 		dispatch(resetFilter(""));
 	};
 
+	const weightOrderHandler = event => {
+		dispatch(orderByWeight(event.target.value));
+	};
+
+	const createDogsFilterHandler = () => {
+		dispatch(filterByCreated());
+	}
+
 	return (
 		<div className={style.container}>
 			<div className={style.filter}>
 				<h3>Filtros</h3>
-				<button onClick={resetFilterHandler}>Resetear filtros</button>
+				<div>
+					<button onClick={createDogsFilterHandler}>Razas Creadas</button>
+				</div>
+				<div>
+					<button onClick={resetFilterHandler}>Resetear filtros</button>
+				</div>
 			</div>
 
 			<div className={style.temperament}>
@@ -69,7 +82,7 @@ const Filter = () => {
 
 			<div className={style.orderWeight}>
 				<h3>Ordenar Pesos</h3>
-				<select>
+				<select onChange={weightOrderHandler}>
 					<option value="" hidden>
 						Seleccione
 					</option>
