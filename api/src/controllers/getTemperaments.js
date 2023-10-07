@@ -33,7 +33,7 @@ const getDogsTemperaments = async (req, res) => {
 
         const newTemperament = await Promise.all(newTemperamentPromise);
 
-        console.log("Temperamentos agregados a la BD:", newTemperament);
+        console.log("temperamentos BD:", newTemperament);
 
         //traigo temperamentos de bd
         const temperamentsDB = await Temperament.findAll();

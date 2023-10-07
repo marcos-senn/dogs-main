@@ -2,6 +2,7 @@ import Card from "../Card/Card";
 import {getDogs} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import Filter from "../Filter/Filter";
 
 import styles from "./Cards.module.css";
 
@@ -41,10 +42,11 @@ const Cards = () => {
         dispatch(getDogs()).then(() => {
             setDataLoaded(true); // Cambio a true el data loaded una vez que obtengo todos los datos para que se renderize
         });
-    }, [dispatch]);
+    }, [dispatch],dogs);
 
 	return (
         <div>
+            <Filter/>
             {dataLoaded ? ( // Pregunto si dataLoaded es true para renderizar
                 <div>
                     <div className={styles.container}>

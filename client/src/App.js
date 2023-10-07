@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
 
+
 function App() {
 	const location = useLocation();
 
@@ -15,6 +16,7 @@ function App() {
 			{location.pathname !== "/" ? <NavBar /> : null}
 			
 			<Routes>
+				
 				<Route path="/" element={<Main />} />
 				<Route path="/home" element={<Cards />} />
 				<Route path="/detail/:id" element={<Detail/>} />

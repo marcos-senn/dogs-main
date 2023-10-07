@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_DOGS_BY_ID,GET_TEMPERAMENTS,CLEAN_DETAIL,POST_DOG} from "./actionTypes";
+import {RESET_FILTER, GET_DOGS, GET_DOGS_BY_ID,GET_TEMPERAMENTS,CLEAN_DETAIL,ORDER_BY_NAME,ORDER_BY_TEMPERAMENT} from "./actionTypes";
 import axios from "axios";
 
 
@@ -60,5 +60,28 @@ export const addDog = (state) => {
     return async () => {
         const endPoint = "http://localhost:3001/dogs";
         const data  = await axios.post(endPoint, state);
+    }
+}
+
+export const orderDogs = (order) =>{
+    //console.log(order)
+    return {
+        type: ORDER_BY_NAME,
+        payload: order,
+    }
+}
+
+export const orderByTemperament= (temperament) => {
+    //console.log(temperament)
+    return{
+        type: ORDER_BY_TEMPERAMENT,
+        payload: temperament,
+    }
+}
+
+export const resetFilter = (state) => {
+    return {
+        type: RESET_FILTER,
+        payload: state,
     }
 }

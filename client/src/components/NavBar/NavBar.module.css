@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    padding: 10px;
+    justify-content: right;
+    margin-right: 170px;
+}
+
+.button{
+    text-decoration: none;
+    color: black;
+}
+
+button{
+    border:none;
+    background: none;
+}
+
+.sbar{
+    margin-right: 74rem;
+}
+
+.inputSb{
+   
+}
