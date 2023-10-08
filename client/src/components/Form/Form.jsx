@@ -15,7 +15,6 @@ function Form() {
 		dispatch(getTemperaments());
 	}, [dispatch]);
 
-	
 	//Estado local con valor de inputs
 	const [state, setState] = useState({
 		name: "",
@@ -27,7 +26,6 @@ function Form() {
 		temperaments: [],
 		imageUrl: "",
 	});
-
 
 	//-------------Manejo de errores-------------------
 	const [errors, setErrors] = useState({
@@ -45,19 +43,17 @@ function Form() {
 
 	const disabledHandler = () => {
 		const completeFields =
-		state.name &&
-		state.minHeight &&
-		state.maxHeight &&
-		state.minWeight &&
-		state.maxWeight &&
-		state.life_span &&
-		state.temperaments.length > 0 &&
-		state.imageUrl;
-	
-	  setSubmitDisabled(!completeFields);
-		
-	}
+			state.name &&
+			state.minHeight &&
+			state.maxHeight &&
+			state.minWeight &&
+			state.maxWeight &&
+			state.life_span &&
+			state.temperaments.length > 0 &&
+			state.imageUrl;
 
+		setSubmitDisabled(!completeFields);
+	};
 
 	//-------------------- Manejo de inputs ------------------------------------
 	const handleChange = event => {
@@ -67,10 +63,14 @@ function Form() {
 		});
 
 		setErrors(
-			validation({ //gestiono errores en tiempo real
-				...state,
-				[event.target.name]: event.target.value,
-			}, event.target.name)
+			validation(
+				{
+					//gestiono errores en tiempo real
+					...state,
+					[event.target.name]: event.target.value,
+				},
+				event.target.name
+			)
 		);
 		disabledHandler();
 		//console.log(state);
@@ -157,7 +157,6 @@ function Form() {
 							placeholder="Ingrese la altura maxima"
 							type="text"
 							name="maxHeight"
-							
 						/>
 						{errors.maxHeight && <p>{errors.maxHeight}</p>}
 					</label>
@@ -170,7 +169,6 @@ function Form() {
 							placeholder="Ingrese el peso minimo"
 							type="text"
 							name="minWeight"
-							
 						/>
 						{errors.minWeight && <p>{errors.minWeight}</p>}
 					</label>
@@ -181,7 +179,6 @@ function Form() {
 							placeholder="Ingrese el peso maximo"
 							type="text"
 							name="maxWeight"
-							
 						/>
 						{errors.maxWeight && <p>{errors.maxWeight}</p>}
 					</label>
@@ -193,7 +190,6 @@ function Form() {
 						placeholder="Ingrese los años de vida"
 						type="text"
 						name="life_span"
-						
 					/>
 					{errors.life_span && <p>{errors.life_span}</p>}
 				</label>
@@ -205,7 +201,6 @@ function Form() {
 						size="3"
 						multiple
 						onChange={temperamentHandler}
-						
 					>
 						{temperaments?.map(temperament => {
 							return (
@@ -227,13 +222,24 @@ function Form() {
 						placeholder="Ingrese url de imagen"
 						type="text"
 						name="imageUrl"
-						
 					/>
 					{errors.imageUrl && <p>{errors.imageUrl}</p>}
 				</label>
 
-				<button className={Styles.submitBtn} value="Agregar" onClick={handleSubmit} type="submit" disabled={submitDisabled}>Agregar</button>
-				{submitDisabled? <p className={Styles.submitDisabled}>Complete todos los campos para habilitar</p> : null}
+				<button
+					className={Styles.submitBtn}
+					value="Agregar"
+					onClick={handleSubmit}
+					type="submit"
+					disabled={submitDisabled}
+				>
+					Agregar
+				</button>
+				{submitDisabled ? (
+					<p className={Styles.submitDisabled}>
+						Complete todos los campos para habilitar
+					</p>
+				) : null}
 			</form>
 		</div>
 	);
