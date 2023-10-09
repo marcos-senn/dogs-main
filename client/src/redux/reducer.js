@@ -97,7 +97,7 @@ const reducer = (state = initialState, { type, payload }) => {
 		case FILTER_BY_CREATED:
 			const dogsCopyCreated = [...state.dogs];
 			const regex = /([a-zA-Z]+([0-9]+[a-zA-Z]+)+)/;
-			console.log(dogsCopyCreated)
+			console.log(dogsCopyCreated);
 			return {
 				...state,
 				dogs: dogsCopyCreated.filter(dog => {

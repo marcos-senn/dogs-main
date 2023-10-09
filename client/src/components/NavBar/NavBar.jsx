@@ -4,19 +4,21 @@ import style from "./NavBar.module.css";
 
 const NavBar = () => {
 	return (
-		<div  className={style.container}>
+		<div className={style.container}>
 			<div className={style.sbar}>
-				<button>
-				<NavLink className={style.button} to="/home">Home</NavLink >
+				<button className={style.button_container}>
+					<NavLink className={style.button} to="/home">
+						Home
+					</NavLink>
 				</button>
 
-				<button>
-				<NavLink className={style.button} to="/form">Crear raza</NavLink>
+				<button className={style.button_container}>
+					<NavLink className={style.button} to="/form">
+						Crear raza
+					</NavLink>
 				</button>
-
 			</div>
-
-			<SearchBar className={`${style.inputSb}`}/>
+			<SearchBar/>
 		</div>
 	);
 };

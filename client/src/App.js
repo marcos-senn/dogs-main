@@ -6,6 +6,7 @@ import Cards from "./components/Cards/Cards.jsx";
 import NavBar from "./components/NavBar/NavBar";
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 	const location = useLocation();
@@ -13,13 +14,13 @@ function App() {
 	return (
 		<div className="App">
 			{location.pathname !== "/" ? <NavBar /> : null}
-
 			<Routes>
 				<Route path="/" element={<Landing />} />
 				<Route path="/home" element={<Cards />} />
 				<Route path="/detail/:id" element={<Detail />} />
 				<Route path="/form" element={<Form />} />
 			</Routes>
+			{location.pathname !== "" ? <Footer /> : null}
 		</div>
 	);
 }

@@ -37,6 +37,7 @@ const getDogs = async (req, res) => {
         });
 
         const allDogs = [...dogApiData, ...getDogsDb];
+        // console.log(allDogs)
 
         return res.status(200).json(allDogs);
     } catch (error) {

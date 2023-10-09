@@ -22,11 +22,13 @@ const Filter = () => {
 
 	const orderNames = event => {
 		dispatch(orderDogs(event.target.value));
+		event.target.value = ''
 	};
 
 	const temperamentOrderHandler = event => {
 		// console.log(event.target.name)
 		dispatch(orderByTemperament(event.target.value));
+		event.target.value = ''
 	};
 
 	const resetFilterHandler = () => {
@@ -35,6 +37,7 @@ const Filter = () => {
 
 	const weightOrderHandler = event => {
 		dispatch(orderByWeight(event.target.value));
+		event.target.value = ''
 	};
 
 	const createDogsFilterHandler = () => {

@@ -1,7 +1,7 @@
 import style from "./SearchBar.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getDogsByname } from "../../redux/actions";
+import { getDogsByname, getDogs} from "../../redux/actions";
 
 const SearchBar = () => {
 	const dispatch = useDispatch();
@@ -30,9 +30,14 @@ const SearchBar = () => {
 		}
 	};
 
+	const handleShowAll= ()=>{
+		dispatch(getDogs())
+	}
+
 	return (
 		<div className={style.container}>
 			<input
+				className={style.input}
 				placeholder="Ingrese una raza"
 				type="search"
 				value={name}
@@ -40,7 +45,8 @@ const SearchBar = () => {
 				onKeyDown={handleEnterKey}
 			/>
 
-			<button onClick={handleSubmit}>Buscar</button>
+			<button className={style.button} onClick={handleSubmit}>Buscar</button>
+			<button className={style.button} onClick={handleShowAll}>Mostrar todos</button>
 		</div>
 	);
 };

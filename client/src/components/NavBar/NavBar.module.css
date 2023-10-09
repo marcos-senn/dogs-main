@@ -1,24 +1,34 @@
 .container{
-    display: flex;
-    padding: 10px;
-    justify-content: right;
-    margin-right: 170px;
+  display: flex;
+  width: 100%;
+  background-color: #000;
+  color:#fff;
+  text-align: center;
+  height: 5vh;
+  align-items: center;
 }
 
 .button{
     text-decoration: none;
-    color: black;
+    color: #fff;
+    padding: 7px 1px;
+    
 }
 
-button{
+.button_container{
     border:none;
     background: none;
+    font-size: 16px;
 }
 
 .sbar{
-    margin-right: 74rem;
+    margin-left: 9vw;
 }
 
-.inputSb{
-   
+.button:hover{
+    color: gold;
+    border-bottom: 1px solid gold;
+    font-weight: bold;
 }
+
+

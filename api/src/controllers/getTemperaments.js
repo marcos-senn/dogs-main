@@ -33,12 +33,12 @@ const getDogsTemperaments = async (req, res) => {
 
         const newTemperament = await Promise.all(newTemperamentPromise);
 
-        console.log("temperamentos BD:", newTemperament);
+        // console.log("temperamentos BD:", newTemperament);
 
         //traigo temperamentos de bd
         const temperamentsDB = await Temperament.findAll();
 
-        console.log("Temperamentos de la BD:", temperamentsDB);
+        // console.log("Temperamentos de la BD:", temperamentsDB);
 
         return res.status(200).json(temperamentsDB);
     } catch (error) {

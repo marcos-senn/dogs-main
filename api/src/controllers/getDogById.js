@@ -21,6 +21,7 @@ const getDogById = async (req, res) => {
                 },
             });
 
+            // console.log(dogDb.Temperaments)
             //Si no existe el registro en la DB retorno un mensaje "Not found"
             if (!dogDb) return res.status(200).json({ message: "Not found" });
 
@@ -41,6 +42,7 @@ const getDogById = async (req, res) => {
                     reference_image_id,
                     temperament,
                 } = apiResponse.data;
+
                 const dog = {
                     id,
                     name,

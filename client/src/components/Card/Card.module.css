@@ -1,48 +1,41 @@
 .card_container {
-   padding: 15px;
-   border-radius: 6px;
-   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px;
-   margin: 20px 10px;
-   width: 340px;
-   height: 450px;
-   font-size: 10px;
-   overflow: hidden; /* Para que las imágenes no se desborden */
-   position: relative; /* relativo a las demas cosas de la card */
-   transition: transform 0.3s ease-in-out; /* Transición suave */
-   text-decoration: none;
-   color: #FDF0F0;
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-  background-color: #FFBB5C;
-
-   
-}
-
-.card_image {
-   display: flex;
-   text-align: center;
-   justify-content: center;
+	padding: 15px;
+	border-radius: 6px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px;
+	margin: 20px 10px;
+	width: 340px;
+	height: 450px;
+	font-size: 10px;
+	overflow: hidden; /* Para que las imágenes no se desborden */
+	position: relative; /* relativo a las demas cosas de la card */
+	transition: transform 0.3s ease-in-out; /* suavizar transicion */
+	text-decoration: none;
+	color: #fdf0f0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	background-color: #000;
 }
 
 .img {
-   width: 100%; /* Establecer un tamaño fijo para las imágenes */
-   height: 280px; /* Tamaño fijo para las imágenes */
-   border-radius: 6px;
-   object-fit: cover; /* Ajustar la imagen dentro del contenedor */
+	width: 100%;
+
+	height: 280px;
+	border-radius: 6px;
+	object-fit: cover;
 }
 
 .card_container:hover {
-   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
-   transform: scale(1.07); /* Aplicar zoom al hacer hover */
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+	transform: scale(1.07);
 }
 
-.info_container{
-   font-size: 13px;
-   font-weight: bold;
-   color: #E25E3E;
+.info_container {
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff;
 }
 
-.dog_name{
-   color: #C63D2F;
+.dog_name {
+	color: gold;
 }

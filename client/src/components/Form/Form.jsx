@@ -80,16 +80,23 @@ function Form() {
 	const [selectedTemperament, setSelectedTemperament] = useState("");
 
 	const temperamentHandler = event => {
-		setSelectedTemperament(event.target.value); //seteo estado con el valor de la opcion seleccionada
+		setSelectedTemperament(event.target.value);
+		 //seteo estado con el valor de la opcion seleccionada
 	};
 
 	const temperamentSubmitHandler = event => {
 		//al hacer click en el boton agrego el temperamento al array de temperamentos
 		event.preventDefault();
+
+		if(state.temperaments.includes(selectedTemperament)) return alert("Ya se ha agregado este temperamento, seleccione otro");
+		
+		//console.log(state.temperaments)
+
 		setState({
 			...state,
 			temperaments: [...state.temperaments, selectedTemperament],
 		});
+		alert("Temperamento agregado con exito");
 		setSelectedTemperament(""); //seteo el estado de la opcion seleccionada en vacio
 	};
 
@@ -135,8 +142,9 @@ function Form() {
 						value={state.name}
 						placeholder="Ingrese el nombre"
 						required
+						
 					/>
-					{errors.name && <p>{errors.name}</p>}
+					{errors.name && <p className={Styles.error}>{errors.name}</p>}
 				</label>
 
 				<div className={Styles.inlineInputs}>
@@ -148,7 +156,7 @@ function Form() {
 							onChange={handleChange}
 							placeholder="Ingrese la altura minima"
 						/>
-						{errors.minHeight && <p>{errors.minHeight}</p>}
+						{errors.minHeight && <p className={Styles.error}>{errors.minHeight}</p>}
 					</label>
 					<label>
 						Altura maxima:
@@ -158,7 +166,7 @@ function Form() {
 							type="text"
 							name="maxHeight"
 						/>
-						{errors.maxHeight && <p>{errors.maxHeight}</p>}
+						{errors.maxHeight && <p className={Styles.error}>{errors.maxHeight}</p>}
 					</label>
 				</div>
 				<div className={Styles.inlineInputs}>
@@ -170,7 +178,7 @@ function Form() {
 							type="text"
 							name="minWeight"
 						/>
-						{errors.minWeight && <p>{errors.minWeight}</p>}
+						{errors.minWeight && <p className={Styles.error}>{errors.minWeight}</p>}
 					</label>
 					<label>
 						Peso Maximo:
@@ -180,7 +188,7 @@ function Form() {
 							type="text"
 							name="maxWeight"
 						/>
-						{errors.maxWeight && <p>{errors.maxWeight}</p>}
+						{errors.maxWeight && <p className={Styles.error}>{errors.maxWeight}</p>}
 					</label>
 				</div>
 				<label>
@@ -191,7 +199,7 @@ function Form() {
 						type="text"
 						name="life_span"
 					/>
-					{errors.life_span && <p>{errors.life_span}</p>}
+					{errors.life_span && <p className={Styles.error}>{errors.life_span}</p>}
 				</label>
 
 				<label>
@@ -201,6 +209,7 @@ function Form() {
 						size="3"
 						multiple
 						onChange={temperamentHandler}
+						className={Styles.select}
 					>
 						{temperaments?.map(temperament => {
 							return (
@@ -210,10 +219,10 @@ function Form() {
 							);
 						})}
 					</select>
-					<button onClick={temperamentSubmitHandler}>
+					<button className={Styles.addTemp} onClick={temperamentSubmitHandler}>
 						Agregar Temperamento
 					</button>
-					{errors.temperaments && <p>{errors.temperaments}</p>}
+					{errors.temperaments && <p className={Styles.error}>{errors.temperaments}</p>}
 				</label>
 				<label>
 					Imagen url:
@@ -223,7 +232,7 @@ function Form() {
 						type="text"
 						name="imageUrl"
 					/>
-					{errors.imageUrl && <p>{errors.imageUrl}</p>}
+					{errors.imageUrl && <p className={Styles.error}>{errors.imageUrl}</p>}
 				</label>
 
 				<button

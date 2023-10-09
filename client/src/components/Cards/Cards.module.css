@@ -4,3 +4,8 @@
     margin: 0 0 20px 0;
     flex-wrap: wrap;
 }
+
+
+.buttons_container{
+    margin-bottom: 50px;
+}

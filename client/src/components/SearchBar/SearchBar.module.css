@@ -2,4 +2,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 50vw;
 }
+
+.button{
+    border:none;
+    background: none;
+    color:#fff;
+    font-size: 16px;
+    padding: 7px 1px;
+    margin: 10px;
+}
+
+.button:hover{
+    color: gold;
+    border-bottom: 1px solid gold;
+    font-weight: bold;
+}
+
+.input {
+    width: 250px; 
+    padding: 5px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    font-size: 16px; 
+    color: #333; 
+    margin: 10px;
+  }
+  
+  
+  .input:focus {
+    outline: none; 
+    border-color: gold; 
+    box-shadow: 0 0 5px rgba(231, 235, 18, 0.5); 
+  }
