@@ -22,13 +22,13 @@ const Filter = () => {
 
 	const orderNames = event => {
 		dispatch(orderDogs(event.target.value));
-		event.target.value = ''
+		event.target.value = "";
 	};
 
 	const temperamentOrderHandler = event => {
 		// console.log(event.target.name)
 		dispatch(orderByTemperament(event.target.value));
-		event.target.value = ''
+		event.target.value = "";
 	};
 
 	const resetFilterHandler = () => {
@@ -37,17 +37,18 @@ const Filter = () => {
 
 	const weightOrderHandler = event => {
 		dispatch(orderByWeight(event.target.value));
-		event.target.value = ''
+		event.target.value = "";
 	};
 
 	const createDogsFilterHandler = () => {
 		dispatch(filterByCreated());
-	}
+	};
 
 	return (
 		<div className={style.container}>
+			
 			<div className={style.filter}>
-				<h3>Filtros</h3>
+			<h3 className={style.title}>Filtros</h3>
 				<div>
 					<button onClick={createDogsFilterHandler}>Razas Creadas</button>
 				</div>

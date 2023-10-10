@@ -83,10 +83,10 @@ const Cards = () => {
 					</div>
 
 					<div className={styles.buttons_container}>
-						<button onClick={handlerPrevPage} disabled={currentPage === 0}>
+						<button className={styles.next} onClick={handlerPrevPage} disabled={currentPage === 0}>
 							Anterior
 						</button>
-						<button onClick={handlerNextPage} disabled={end >= dogs.length}>
+						<button className={styles.next} onClick={handlerNextPage} disabled={end >= dogs.length}>
 							Siguiente
 						</button>
 					</div>

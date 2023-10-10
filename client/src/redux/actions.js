@@ -15,6 +15,7 @@ export const getDogs = () => {
 	return async dispatch => {
 		const endPoint = "http://localhost:3001/dogs";
 		const { data } = await axios.get(endPoint);
+		//console.log(data)
 		return dispatch({
 			type: GET_DOGS,
 			payload: data,

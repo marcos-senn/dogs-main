@@ -1,11 +1,29 @@
-.container{
-    display: flex;
-    justify-content: center;
-    margin: 0 0 20px 0;
-    flex-wrap: wrap;
+.container {
+	display: flex;
+	justify-content: center;
+	margin: 0 0 20px 0;
+	flex-wrap: wrap;
+}
+
+.buttons_container {
+	margin-bottom: 50px;
+}
+
+.next {
+	background-color: #000;
+	color: #fff;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin-bottom: 1rem;
+    margin-right: 10px;
 }
 
 
-.buttons_container{
-    margin-bottom: 50px;
+.next:hover {
+	background-color: gold;
+	color: #000;
+	font-weight: bold;
 }

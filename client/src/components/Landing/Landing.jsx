@@ -11,11 +11,9 @@ const Landing = () => {
 					Busca tu raza favorita y conoce todo sobre ella.
 				</p>
 
-				<button className={style.btn_grad}>
-					<NavLink className={style.navlink} to="/home">
-						Ingresar
-					</NavLink>
-				</button>
+				<NavLink className={style.navlink} to="/home">
+					<button className={style.btn_grad}>Ingresar</button>
+				</NavLink>
 			</div>
 
 			<div className={style.image_container}>
