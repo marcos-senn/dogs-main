@@ -9,7 +9,7 @@
 	margin-bottom: 50px;
 }
 
-.next {
+.next, .inter{
 	background-color: #000;
 	color: #fff;
 	border: none;
@@ -27,3 +27,21 @@
 	color: #000;
 	font-weight: bold;
 }
+
+.inter{
+	padding: 2px 8px;
+}
+
+.inter:hover{
+	background-color: gold;
+	color: #000;
+	font-weight: bold;
+}
+
+/* boton activo */
+.activeButton {
+	background-color: gold; 
+	color: #000; 
+	font-weight: bold;
+  }
+  

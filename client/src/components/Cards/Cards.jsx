@@ -15,7 +15,7 @@ const Cards = () => {
 
 	const dispatch = useDispatch();
 
-	//-----------Paginado----------------
+	//-----------Paginado Anterior y Siguiente----------------
 	const elementPerPage = 8;
 	const [currentPage, setCurrentPage] = useState(0);
 
@@ -34,6 +34,60 @@ const Cards = () => {
 		if (start > 0) {
 			setCurrentPage(currentPage - 1);
 		}
+	};
+
+	//-----------Paginado Botones intermedios----------------
+	// const totalPages = Math.ceil(dogs.length / elementPerPage);
+
+	// const renderPageNumbers = () => {
+	// 	const pageNumbers = [];
+	// 	for (let i = 0; i < totalPages; i++) {
+	// 		pageNumbers.push(
+	// 			<button
+	// 				key={i}
+	// 				className={styles.inter}
+	// 				onClick={() => setCurrentPage(i)}
+	// 			>
+	// 				{i + 1}
+	// 			</button>
+	// 		);
+	// 	}
+	// 	return pageNumbers;
+	// };
+
+	const maxPageNumbersToShow = 5; //  muestro 5 botones en el medio
+
+	const renderPageNumbers = () => {
+		const pageNumbers = [];
+		const totalPages = Math.ceil(dogs.length / elementPerPage); //divido la cantidad de perros por la cantidad de perros por pagina para saber cuantas paginas voy a tener en cada boton intermedio
+
+		let startPage = Math.max(
+			currentPage - Math.floor(maxPageNumbersToShow / 2),
+			0
+		);
+		let endPage = Math.min(
+			startPage + maxPageNumbersToShow - 1,
+			totalPages - 1
+		);
+
+		if (endPage - startPage < maxPageNumbersToShow - 1) {
+			startPage = Math.max(endPage - maxPageNumbersToShow + 1, 0);
+		}
+
+		for (let i = startPage; i <= endPage; i++) {
+			pageNumbers.push(
+				<button
+					key={i}
+					className={`${styles.inter} ${
+						i === currentPage ? styles.activeButton : ""
+					}`}
+					onClick={() => setCurrentPage(i)}
+				>
+					{i + 1}
+				</button>
+			);
+		}
+		return pageNumbers;
 	};
 
 	//controlar el renderizado de la pagina
@@ -83,10 +137,19 @@ const Cards = () => {
 					</div>
 
 					<div className={styles.buttons_container}>
-						<button className={styles.next} onClick={handlerPrevPage} disabled={currentPage === 0}>
+						<button
+							className={styles.next}
+							onClick={handlerPrevPage}
+							disabled={currentPage === 0}
+						>
 							Anterior
 						</button>
-						<button className={styles.next} onClick={handlerNextPage} disabled={end >= dogs.length}>
+						{renderPageNumbers()} {/* renderizo botones intermedios */}
+						<button
+							className={styles.next}
+							onClick={handlerNextPage}
+							disabled={end >= dogs.length}
+						>
 							Siguiente
 						</button>
 					</div>
