@@ -67,10 +67,15 @@ export const getTemperaments = () => {
 };
 
 export const addDog = state => {
-	return async () => {
-		const endPoint = "http://localhost:3001/dogs";
-		const data = await axios.post(endPoint, state);
-	};
+	try {
+		return async () => {
+			const endPoint = "http://localhost:3001/dogs";
+			const data = await axios.post(endPoint, state);
+			alert("Creado con exito");
+		};
+	} catch (error) {
+		alert(error.message);
+	}
 };
 
 export const orderDogs = order => {

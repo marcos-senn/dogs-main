@@ -1,6 +1,6 @@
 import React from "react";
 import Styles from "./Form.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments } from "../../redux/actions";
 import { addDog } from "../../redux/actions";
@@ -8,7 +8,7 @@ import validation from "./validations";
 
 function Form() {
 	const temperaments = useSelector(state => state.temperaments); //traigo los temperamentos del estado global para mapear en options
-
+	const dogs = useSelector(state => state.dogs); //traigo los perros del estado global para controlar no crear uno que ya este aqui
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -81,24 +81,34 @@ function Form() {
 
 	const temperamentHandler = event => {
 		setSelectedTemperament(event.target.value);
-		 //seteo estado con el valor de la opcion seleccionada
+		//seteo estado con el valor de la opcion seleccionada
 	};
 
 	const temperamentSubmitHandler = event => {
 		//al hacer click en el boton agrego el temperamento al array de temperamentos
 		event.preventDefault();
 
-		if(state.temperaments.includes(selectedTemperament)) return alert("Ya se ha agregado este temperamento, seleccione otro");
-		
+		if (state.temperaments.includes(selectedTemperament)) {
+			alert("Ya se ha agregado este temperamento, seleccione otro");
+			return;
+		}
+
+		alert("Temperamento agregado, puede seleccionar otro");
 		//console.log(state.temperaments)
 
 		setState({
 			...state,
 			temperaments: [...state.temperaments, selectedTemperament],
 		});
-		alert("Temperamento agregado con exito");
+
 		setSelectedTemperament(""); //seteo el estado de la opcion seleccionada en vacio
+
+		if (ref.current) {
+			ref.current.selectedIndex = -1; //seteo el select en index -1 para que no quede seleccionada ninguna opcion
+		}
 	};
+
+	const ref = useRef(null);
 
 	//----------------- Dispatch de la accion de agregar perro ------------------
 
@@ -116,8 +126,18 @@ function Form() {
 		//envio objeto al servidor
 		//console.log(newDog)
 		event.preventDefault();
+
+		if (
+			dogs.map(
+				dog => dog.name.trim().toLowerCase() === state.name.trim().toLowerCase()
+			)
+		) {
+			alert("Ya existe un perro con este nombre, seleccione otro");
+			return;
+		}
+
 		dispatch(addDog(newDog));
-		alert("Raza agregada con exito");
+
 		setState({
 			name: "",
 			minHeight: 0,
@@ -142,7 +162,6 @@ function Form() {
 						value={state.name}
 						placeholder="Ingrese el nombre"
 						required
-						
 					/>
 					{errors.name && <p className={Styles.error}>{errors.name}</p>}
 				</label>
@@ -156,7 +175,9 @@ function Form() {
 							onChange={handleChange}
 							placeholder="Ingrese la altura minima"
 						/>
-						{errors.minHeight && <p className={Styles.error}>{errors.minHeight}</p>}
+						{errors.minHeight && (
+							<p className={Styles.error}>{errors.minHeight}</p>
+						)}
 					</label>
 					<label>
 						Altura maxima:
@@ -166,7 +187,9 @@ function Form() {
 							type="text"
 							name="maxHeight"
 						/>
-						{errors.maxHeight && <p className={Styles.error}>{errors.maxHeight}</p>}
+						{errors.maxHeight && (
+							<p className={Styles.error}>{errors.maxHeight}</p>
+						)}
 					</label>
 				</div>
 				<div className={Styles.inlineInputs}>
@@ -178,7 +201,9 @@ function Form() {
 							type="text"
 							name="minWeight"
 						/>
-						{errors.minWeight && <p className={Styles.error}>{errors.minWeight}</p>}
+						{errors.minWeight && (
+							<p className={Styles.error}>{errors.minWeight}</p>
+						)}
 					</label>
 					<label>
 						Peso Maximo:
@@ -188,7 +213,9 @@ function Form() {
 							type="text"
 							name="maxWeight"
 						/>
-						{errors.maxWeight && <p className={Styles.error}>{errors.maxWeight}</p>}
+						{errors.maxWeight && (
+							<p className={Styles.error}>{errors.maxWeight}</p>
+						)}
 					</label>
 				</div>
 				<label>
@@ -199,12 +226,15 @@ function Form() {
 						type="text"
 						name="life_span"
 					/>
-					{errors.life_span && <p className={Styles.error}>{errors.life_span}</p>}
+					{errors.life_span && (
+						<p className={Styles.error}>{errors.life_span}</p>
+					)}
 				</label>
 
 				<label>
 					Temperamentos:
 					<select
+						ref={ref}
 						name="temperament"
 						size="3"
 						multiple
@@ -222,7 +252,9 @@ function Form() {
 					<button className={Styles.addTemp} onClick={temperamentSubmitHandler}>
 						Agregar Temperamento
 					</button>
-					{errors.temperaments && <p className={Styles.error}>{errors.temperaments}</p>}
+					{errors.temperaments && (
+						<p className={Styles.error}>{errors.temperaments}</p>
+					)}
 				</label>
 				<label>
 					Imagen url:
