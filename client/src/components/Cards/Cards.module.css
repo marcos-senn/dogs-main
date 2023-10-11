@@ -26,16 +26,19 @@
 	background-color: gold;
 	color: #000;
 	font-weight: bold;
+	
 }
 
 .inter{
 	padding: 2px 8px;
+	transition: transform 0.3s ease-in-out;
 }
 
 .inter:hover{
 	background-color: gold;
 	color: #000;
 	font-weight: bold;
+	transform: scale(1.5);
 }
 
 /* boton activo */

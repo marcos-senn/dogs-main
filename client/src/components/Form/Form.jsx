@@ -39,9 +39,10 @@ function Form() {
 		imageUrl: "",
 	});
 
-	const [submitDisabled, setSubmitDisabled] = useState(true);
+	const [submitDisabled, setSubmitDisabled] = useState(true); //estado para habilitar o deshabilitar el boton de submit
 
 	const disabledHandler = () => {
+		//habilita o deshabilita el boton de submit segun si estan completos los inputs
 		const completeFields =
 			state.name &&
 			state.minHeight &&
@@ -63,15 +64,16 @@ function Form() {
 		});
 
 		setErrors(
+			//manejo de errores con validaciones
 			validation(
 				{
-					//gestiono errores en tiempo real
 					...state,
-					[event.target.name]: event.target.value,
+					[event.target.name]: event.target.value
 				},
 				event.target.name
 			)
 		);
+
 		disabledHandler();
 		//console.log(state);
 	};
@@ -108,7 +110,7 @@ function Form() {
 		}
 	};
 
-	const ref = useRef(null);
+	const ref = useRef(null); //referencia al select para setear el index en -1
 
 	//----------------- Dispatch de la accion de agregar perro ------------------
 
@@ -128,11 +130,25 @@ function Form() {
 		event.preventDefault();
 
 		if (
-			dogs.map(
+			dogs.some(
 				dog => dog.name.trim().toLowerCase() === state.name.trim().toLowerCase()
 			)
 		) {
 			alert("Ya existe un perro con este nombre, seleccione otro");
+			return;
+		}
+
+		if (
+			errors.name ||
+			errors.minHeight ||
+			errors.maxHeight ||
+			errors.minWeight ||
+			errors.maxWeight ||
+			errors.life_span ||
+			errors.temperaments ||
+			errors.imageUrl
+		) {
+			alert("Complete los campos correctamente");
 			return;
 		}
 

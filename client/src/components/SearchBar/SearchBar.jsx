@@ -12,24 +12,24 @@ const SearchBar = () => {
 		setName(event.target.value);
 	};
 
-	//Funcion que hace dispatch con el input ingresado
+	// dispatch con el input ingresado
 	const onSearch = name => {
 		dispatch(getDogsByname(name));
 	};
 
-	//Funcion que usa el buton para ejecutar onSearch y limpiar el input
+	// ejecutar onSearch y limpiar el input
 	const handleSubmit = () => {
 		onSearch(name);
 		setName("");
 	};
 
-	//Funcion para ejecutar onSearch con enter
+	// ejecutar onSearch con enter
 	const handleEnterKey = event => {
 		if (event.key === "Enter") {
 			handleSubmit();
 		}
 	};
-
+	//mostrar todos los perros nuevamente
 	const handleShowAll= ()=>{
 		dispatch(getDogs())
 	}

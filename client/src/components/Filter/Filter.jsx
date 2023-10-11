@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./Filter.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	orderDogs,
@@ -14,33 +14,33 @@ import {
 const Filter = () => {
 	const dispatch = useDispatch();
 
-	const temperaments = useSelector(state => state.temperaments);
+	const temperaments = useSelector(state => state.temperaments); //traigo los temperamentos del estado global para poder mostrarlos en el select
 
 	useEffect(() => {
-		dispatch(getTemperaments());
+		dispatch(getTemperaments()); //cuando se monta el componente, se hace el dispatch de la accion que trae los temperamentos desde la bd
 	}, [dispatch]);
 
 	const orderNames = event => {
-		dispatch(orderDogs(event.target.value));
+		dispatch(orderDogs(event.target.value)); //dispatch de action con value "A" o "D" para ordenar los nombres de las razas
 		event.target.value = "";
 	};
 
 	const temperamentOrderHandler = event => {
 		// console.log(event.target.name)
-		dispatch(orderByTemperament(event.target.value));
+		dispatch(orderByTemperament(event.target.value)); //dispatch de action con temperamento como value para ordenar las razas por temperamento
 		event.target.value = "";
 	};
 
-	const resetFilterHandler = () => {
+	const resetFilterHandler = () => { //dispatch de action para resetear los filtros, trae todas las razas del estado global
 		dispatch(resetFilter(""));
 	};
 
-	const weightOrderHandler = event => {
+	const weightOrderHandler = event => { //dispatch de action con value "PP", "PM" o "PG" para ordenar las razas por peso
 		dispatch(orderByWeight(event.target.value));
 		event.target.value = "";
 	};
 
-	const createDogsFilterHandler = () => {
+	const createDogsFilterHandler = () => { //dispatch de action para filtrar las razas creadas 
 		dispatch(filterByCreated());
 	};
 

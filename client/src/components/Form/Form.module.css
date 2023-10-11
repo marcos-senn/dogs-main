@@ -11,19 +11,17 @@
 
 label {
 	margin-bottom: 30px;
-	
 }
 
 .inlineInputs {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 10px; 
-  }
-
+	margin-bottom: 10px;
+}
 
 .inlineInputs label {
 	flex: 1;
-	margin-right: 10px; 
+	margin-right: 10px;
 }
 
 .inlineInputs {
@@ -34,11 +32,11 @@ label {
 
 input[type="text"] {
 	border: none;
-	border-bottom: 1px solid #000; 
-	outline: none; 
-	margin-bottom: 10px; 
-	padding: 5px; 
-	width: 100%; 
+	border-bottom: 1px solid #000;
+	outline: none;
+	margin-bottom: 10px;
+	padding: 5px;
+	width: 100%;
 }
 
 .submitBtn {
@@ -58,10 +56,9 @@ input[type="text"] {
 	cursor: not-allowed;
 }
 
-.submitDisabled{
+.submitDisabled {
 	color: red;
 }
-
 
 .container {
 	margin-top: 50px;
@@ -86,6 +83,7 @@ input[type="text"] {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	outline: none;
+	background: #fff;
 }
 
 .select:focus {
@@ -97,6 +95,6 @@ input[type="text"] {
 	color: black;
 }
 
-.error{
+.error {
 	color: red;
 }

@@ -7,7 +7,7 @@ import Filter from "../Filter/Filter";
 import styles from "./Cards.module.css";
 
 const Cards = () => {
-	//Estado para saber si ya se obtuvieron los datos de la api
+	//Estado para saber si ya se obtuvieron los datos de la api y mostrar el mensaje de cargando ahsta que se obtengan
 	const [dataLoaded, setDataLoaded] = useState(false);
 
 	//Estado dogs de la store
@@ -16,11 +16,16 @@ const Cards = () => {
 	const dispatch = useDispatch();
 
 	//-----------Paginado Anterior y Siguiente----------------
+
+	//se modifica current page con los handlers
+	//cambian los valores de start y end
+	//se modifica current dogs con el slice(start,end)
+
 	const elementPerPage = 8;
 	const [currentPage, setCurrentPage] = useState(0);
 
-	const start = currentPage * elementPerPage;
-	const end = start + elementPerPage;
+	let start = currentPage * elementPerPage; //inicio de la pagina actual para hacer el slice, si currentPage es 0, start es 0, si currentPage es 1, start es 8, si currentPage es 2, start es 16, etc
+	let end = start + elementPerPage; //fin de la pagina actual para hacer el slice, si currentPage es 0, end es 8, si currentPage es 1, end es 16, si currentPage es 2, end es 24, etc
 
 	const currentDogs = Array.isArray(dogs) ? dogs.slice(start, end) : [];
 
@@ -54,36 +59,41 @@ const Cards = () => {
 	// 	}
 	// 	return pageNumbers;
 	// };
-
-	const maxPageNumbersToShow = 5; //  muestro 5 botones en el medio
+	const maxPageNumbers = 5; //  muestro 5 botones en el medio
 
 	const renderPageNumbers = () => {
-		const pageNumbers = [];
-		const totalPages = Math.ceil(dogs.length / elementPerPage); //divido la cantidad de perros por la cantidad de perros por pagina para saber cuantas paginas voy a tener en cada boton intermedio
+		const pageNumbers = []; //dentro de este array voy a pushear los botones intermedios
+		const totalPages = Math.ceil(dogs.length / elementPerPage); //calculo de la cantidad de paginas totales que puede mostrar cada boton
 
 		let startPage = Math.max(
-			currentPage - Math.floor(maxPageNumbersToShow / 2),
+			currentPage - Math.floor(maxPageNumbers / 2), //calculo cual va a ser el primer boton
 			0
 		);
+		//math.max(0 - 2, 0) =>>> 0
+
 		let endPage = Math.min(
-			startPage + maxPageNumbersToShow - 1,
+			//calculo cual va a ser el ultimo boton intermedio
+			startPage + maxPageNumbers - 1,
 			totalPages - 1
 		);
+		//math.min(0+5-1, 5-1) =>>> 4
 
-		if (endPage - startPage < maxPageNumbersToShow - 1) {
-			startPage = Math.max(endPage - maxPageNumbersToShow + 1, 0);
-		}
+		//    21	-  18   <        5    -        1
+		if (endPage - startPage < maxPageNumbers - 1) {
+			startPage = Math.max(endPage - maxPageNumbers + 1, 0); //evitar que en las ultimas paginas se muestren menos de 5 botones
+		} // 21  - 5 + 1
 
 		for (let i = startPage; i <= endPage; i++) {
 			pageNumbers.push(
 				<button
 					key={i}
 					className={`${styles.inter} ${
-						i === currentPage ? styles.activeButton : ""
+						i === currentPage ? styles.activeButton : "" //colorear pagina en la que me encuentro
 					}`}
 					onClick={() => setCurrentPage(i)}
 				>
-					{i + 1}
+					{i + 1}{" "}
+					{/* i+1 porque arranca en 0 y quiero mostrar 1 y asi con todos los botones */}
 				</button>
 			);
 		}

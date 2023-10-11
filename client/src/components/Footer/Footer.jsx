@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Footer.module.css"; // Importa los estilos CSS como un módulo
+import styles from "./Footer.module.css"; 
 
 function Footer() {
 	return (
@@ -7,18 +7,18 @@ function Footer() {
 			<div className={styles.logos}>
 				<a href="https://www.linkedin.com/in/marcossenn/">
 					<img
-						src="/linkedinlogo.png" // Reemplaza con la ruta real a la imagen PNG de LinkedIn
+						src="/linkedinlogo.png" 
 						alt="LinkedIn"
-						width="25" // Ajusta el ancho según tus preferencias
-						height="25" // Ajusta la altura según tus preferencias
+						width="25" 
+						height="25" 
 					/>
 				</a>
 				<a href="https://github.com/marcos-senn">
         <img
-						src="/githublogo.png" // Reemplaza con la ruta real a la imagen PNG de LinkedIn
+						src="/githublogo.png" 
 						alt="LinkedIn"
-						width="25" // Ajusta el ancho según tus preferencias
-						height="25" // Ajusta la altura según tus preferencias
+						width="25" 
+						height="25" 
 					/>
         </a>
 			</div>
