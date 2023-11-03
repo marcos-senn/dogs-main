@@ -68,6 +68,7 @@ const Filter = () => {
 							<option key={temperament.id} value={temperament.name}>
 								{temperament.name}
 							</option>
+						
 						);
 					})}
 				</select>

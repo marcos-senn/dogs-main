@@ -1,83 +1,77 @@
-const validation = (state, name) => {
+const validation = state => {
 	let errors = {};
 
-	switch (name) {
-		case "name":
-			if (!state.name) {
-				errors.name = "Ingrese un nombre";
-			} else if (/[1-9]/.test(state.name)) {
-				errors.name = "El nombre no puede contener numeros";
-			}
+	if (!state.name) {
+		errors.name = "Ingrese un nombre";
+	}
+	if (/[1-9]/.test(state.name)) {
+		errors.name = "El nombre no puede contener numeros";
+	}
 
-			break;
+	if (!state.minHeight) {
+		errors.minHeight = "Es necesario un valor de altura mínimo";
+	}
+	if (isNaN(state.minHeight)) {
+		errors.minHeight = "El valor de altura minimo debe ser un numero";
+	}
+	if (state.minHeight > state.maxHeight) {
+		errors.minHeight =
+			"El valor de altura minimo debe ser menor al valor de altura maximo";
+	}
 
-		case "minHeight":
-			if (!state.minHeight) {
-				errors.minHeight = "Es necesario un valor de altura mínimo";
-			} else if (isNaN(state.minHeight)) {
-				errors.minHeight = "El valor de altura minimo debe ser un numero";
-			} else if (state.minHeight > state.maxHeight) {
-				errors.minHeight =
-					"El valor de altura minimo debe ser menor al valor de altura maximo";
-			}
-			break;
+	if (state.minHeight < state.maxHeight) {
+		errors.minHeight = "";
+	} else {
+		errors.minHeight = "El valor de altura minimo debe ser menor al valor de altura maximo";
+	}
 
-		case "maxHeight":
-			if (!state.maxHeight) {
-				errors.maxHeight = "Es necesario un valor de altura maximo";
-			} else if (isNaN(state.maxHeight)) {
-				errors.maxHeight = "El valor de altura maximo debe ser un numero";
-			} else if (state.maxHeight < state.minHeight) {
-				errors.maxHeight =
-					"El valor de altura maximo debe ser mayor al valor de altura minimo";
-			}
-			break;
+	if (!state.maxHeight) {
+		errors.maxHeight = "Es necesario un valor de altura maximo";
+	}
+	if (isNaN(state.maxHeight)) {
+		errors.maxHeight = "El valor de altura maximo debe ser un numero";
+	}
+	if (state.maxHeight < state.minHeight) {
+		errors.maxHeight =
+			"El valor de altura maximo debe ser mayor al valor de altura minimo";
+	}
 
-		case "minWeight":
-			if (!state.minWeight) {
-				errors.minWeight = "Es necesario un valor de peso mínimo";
-			} else if (isNaN(state.minWeight)) {
-				errors.minWeight = "El peso minimo debe ser un numero";
-			} else if (state.minWeight > state.maxWeight) {
-				errors.minWeight = "El peso minimo debe ser menor al peso maximo";
-			}
-			break;
+	if (!state.minWeight) {
+		errors.minWeight = "Es necesario un valor de peso mínimo";
+	}
+	if (isNaN(state.minWeight)) {
+		errors.minWeight = "El peso minimo debe ser un numero";
+	}
+	if (state.minWeight > state.maxWeight) {
+		errors.minWeight = "El peso minimo debe ser menor al peso maximo";
+	}
 
-		case "maxWeight":
-			if (!state.maxWeight) {
-				errors.maxWeight = "Es necesario un valor de peso maximo";
-			} else if (isNaN(state.maxWeight)) {
-				errors.maxWeight = "El peso maximo debe ser un numero";
-			} else if (state.maxWeight < state.minWeight) {
-				errors.maxWeight = "El peso maximo debe ser mayor al peso minimo";
-			}
+	if (!state.maxWeight) {
+		errors.maxWeight = "Es necesario un valor de peso maximo";
+	}
+	if (isNaN(state.maxWeight)) {
+		errors.maxWeight = "El peso maximo debe ser un numero";
+	}
+	if (state.maxWeight < state.minWeight) {
+		errors.maxWeight = "El peso maximo debe ser mayor al peso minimo";
+	}
 
-			break;
+	if (!state.life_span) {
+		errors.life_span = "Es necesario ingresar años de vida";
+	}
+	if (isNaN(state.life_span)) {
+		errors.life_span = "Años de vida debe ser un numero";
+	}
+	if (state.life_span > 50) {
+		errors.life_span = "Años de vida debe ser menor a 50";
+	}
 
-		case "life_span":
-			if (!state.life_span) {
-				errors.life_span = "Es necesario ingresar años de vida";
-			} else if (isNaN(state.life_span)) {
-				errors.life_span = "Años de vida debe ser un numero";
-			} else if (state.life_span > 50) {
-				errors.life_span = "Años de vida debe ser menor a 50";
-			}
-			break;
+	if (state.temperaments.length < 1) {
+		errors.temperaments = "Al menos un temperamento es necesario";
+	}
 
-		case "temperaments":
-			if (state.temperaments.length < 1) {
-				errors.temperaments = "Al menos un temperamento es necesario";
-			}
-			break;
-
-		case "imageUrl":
-			if (!state.imageUrl) {
-				errors.imageUrl = "Es necesario ingresar una imagen";
-			}
-			break;
-
-		default:
-			break;
+	if (!state.imageUrl) {
+		errors.imageUrl = "Es necesario ingresar una imagen";
 	}
 
 	return errors;

@@ -57,22 +57,24 @@ function Form() {
 	};
 
 	//-------------------- Manejo de inputs ------------------------------------
-	const handleChange = event => {
+	const handleChange = function (event){
 		setState({
 			...state,
 			[event.target.name]: event.target.value,
 		});
+
+		console.log(state)
 
 		setErrors(
 			//manejo de errores con validaciones
 			validation(
 				{
 					...state,
-					[event.target.name]: event.target.value
 				},
-				event.target.name
 			)
 		);
+
+		console.log(errors)
 
 		disabledHandler();
 		//console.log(state);
@@ -165,6 +167,17 @@ function Form() {
 			imageUrl: "",
 		});
 	};
+
+	const deleteTemperament = (event)  => {
+		const finalTemperaments = state.temperaments.filter(temperament => temperament !== event)
+
+		console.log(finalTemperaments)
+		setState({
+			...state,
+			temperaments: [...finalTemperaments],
+		});
+
+	}
 
 	return (
 		<div className={Styles.container}>
@@ -271,6 +284,13 @@ function Form() {
 					{errors.temperaments && (
 						<p className={Styles.error}>{errors.temperaments}</p>
 					)}
+
+					<div>
+					{state.temperaments?.map((temperament,index)=> {
+						return <button key={index} onClick={() => deleteTemperament(temperament)}>{temperament}</button>;
+					})}
+					</div>
+					
 				</label>
 				<label>
 					Imagen url:

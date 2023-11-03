@@ -24,14 +24,13 @@ const getDogsTemperaments = async (req, res) => {
 
                 //añadir temperamentos a bd
 
-            //ver si es necesario el el await promis all
         const newTemperamentPromise = Array.from(temperaments).map((temperament) =>
             Temperament.findOrCreate({ where: { name: temperament.trim() } })
         );
 
         //console.log(" BD:", newTemperamentPromise);
 
-        const newTemperament = await Promise.all(newTemperamentPromise);
+        const newTemperament = await Promise.all(newTemperamentPromise)
 
         // console.log("temperamentos BD:", newTemperament);
 
@@ -40,7 +39,7 @@ const getDogsTemperaments = async (req, res) => {
 
         // console.log("Temperamentos de la BD:", temperamentsDB);
 
-        return res.status(200).json(temperamentsDB);
+        return res.status(200).json(temperamentsDB); //return temp desde bd
     } catch (error) {
         res.status(500).send(error.message);
     }
