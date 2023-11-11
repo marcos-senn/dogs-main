@@ -8,7 +8,6 @@ const URL = "https://api.thedogapi.com/v1/breeds";
 
 const getDogs = async (req, res) => {
     try {
-        //datos de api
         const response = await axios(`${URL}?api_key=${api_key}`);
         const dataResponse = response.data;
         const dogApiData = dataResponse.map((dog) => {
@@ -22,8 +21,6 @@ const getDogs = async (req, res) => {
                 temperament: dog.temperament,
             };
         });
-
-        //datos de bd
         const getDogsDb = await Dog.findAll({
             include: [
                 {
