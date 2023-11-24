@@ -31,4 +31,26 @@
     font-weight: bold;
 }
 
+/* NavBar.module.css */
+
+/* Estilos para pantallas más pequeñas que 1920px */
+@media screen and (max-width: 571px) {
+    .container {
+      flex-direction: column; /* Cambia la dirección del contenedor a columna */
+    }
+  
+    .sbar {
+      margin-bottom: 15px; /* Añade espacio entre los botones y la barra de búsqueda */
+    }
+  
+    .button_container {
+      margin-bottom: 10px; /* Añade espacio entre los botones */
+    }
+  
+    .button {
+      font-size: 16px; /* Ajusta el tamaño de fuente de los botones */
+    }
+  }
+  
+
 

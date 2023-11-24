@@ -48,3 +48,49 @@
 	font-weight: bold;
   }
   
+
+  /* Cards.module.css */
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 767px) {
+	.container {
+	  flex-direction: column; /* Cambia la dirección del contenedor a columna */
+	}
+  
+	.buttons_container {
+	  flex-direction: column; /* Cambia la dirección de los botones a columna */
+	  align-items: center; /* Centra los botones horizontalmente */
+	}
+  
+	.next {
+	  margin-top: 10px; /* Añade espacio entre el botón Siguiente y Anterior */
+	}
+  }
+  
+  /* Cards.module.css */
+
+/* Estilos para pantallas más pequeñas que 1920px */
+@media screen and (max-width: 1920px) {
+	.container {
+	  padding: 10px; /* Añade un poco de espacio alrededor del contenedor */
+	}
+  
+	.card_container {
+	  width: 100%; /* Ajusta el ancho al 100% para ocupar todo el espacio disponible */
+	}
+  
+	.img {
+	  height: 200px; /* Reduzco la altura de la imagen para pantallas más pequeñas */
+	}
+	
+	.info_container {
+	  font-size: 12px; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+	}
+	
+	.next,
+	.inter {
+	  font-size: 12px; /* Ajusta el tamaño de fuente de los botones */
+	  padding: 5px 10px; /* Añade espacio interno a los botones */
+	}
+  }
+  

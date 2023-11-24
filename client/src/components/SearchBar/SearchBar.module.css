@@ -36,3 +36,21 @@
     border-color: gold; 
     box-shadow: 0 0 5px rgba(231, 235, 18, 0.5); 
   }
+
+  /* SearchBar.module.css */
+
+/* Estilos para pantallas más pequeñas que 1920px */
+@media screen and (max-width: 571px) {
+    .container {
+      flex-direction: column; /* Cambia la dirección del contenedor a columna */
+    }
+  
+    .input {
+      margin-bottom: 10px; /* Añade espacio entre el input y los botones */
+    }
+  
+    .button {
+      font-size: 16px; /* Ajusta el tamaño de fuente de los botones */
+    }
+  }
+  

@@ -31,3 +31,64 @@
 	height: 500px;
     border-radius: 6px 0 0 6px
 }
+
+
+
+/* Estilos para pantallas más pequeñas que 767px */
+@media screen and (max-width: 767px) {
+	.container {
+	  padding: 10px; /* Añade un poco de espacio alrededor del contenedor */
+	  flex-direction: column; /* Cambia la dirección del contenedor a columna */
+	}
+  
+	.image {
+	  width: 100%; /* Ajusta el ancho de la imagen al 100% */
+	  height: auto; /* Ajusta la altura de la imagen automáticamente */
+	}
+  
+	.info {
+	  margin-top: 10px; /* Añade espacio entre la imagen y la información */
+	}
+  
+	.name,
+	.other_data {
+	  font-size: 16px; /* Ajusta el tamaño de fuente de los textos principales */
+	}
+  
+	.other_data {
+	  margin-bottom: 5px; /* Añade espacio entre los elementos de información */
+	}
+  }
+  
+  
+/* Detail.module.css */
+
+/* Estilos para pantallas más pequeñas que 1920px */
+@media screen and (max-width: 1920px) {
+	.container {
+	  padding: 10px; /* Añade un poco de espacio alrededor del contenedor */
+	  flex-direction: column; /* Cambia la dirección del contenedor a columna */
+	}
+  
+	.image {
+	  width: 100%; /* Ajusta el ancho de la imagen al 100% */
+	  height: auto; /* Ajusta la altura de la imagen automáticamente */
+	}
+  
+	.info {
+	  margin-top: 10px; /* Añade espacio entre la imagen y la información */
+	}
+  
+	.name,
+	.other_data {
+	  font-size: 18px; /* Ajusta el tamaño de fuente de los textos principales */
+	}
+  
+	.other_data {
+	  margin-bottom: 5px; /* Añade espacio entre los elementos de información */
+	}
+  }
+
+  
+  /* Detail.module.css */
+
