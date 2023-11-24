@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments } from "../../redux/actions";
 import { addDog } from "../../redux/actions";
 import validation from "./validations";
+import { useForm, SubmitHandler } from "react-hook-form"
 
 function Form() {
 	const temperaments = useSelector(state => state.temperaments); //traigo los temperamentos del estado global para mapear en options

@@ -74,6 +74,10 @@ const validation = state => {
 		errors.imageUrl = "Es necesario ingresar una imagen";
 	}
 
+	if (!/\bhttps?:\/\/\S+?\.(png|jpe?g|gif|bmp|webp)\b/.test(state.imageUrl)){
+		errors.imageUrl = "Debe ser una url valida";
+	}
+
 	return errors;
 };
 
